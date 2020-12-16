@@ -1,4 +1,5 @@
 import { put, takeLatest } from 'redux-saga/effects'
+import { FETCH_SUCCEEDED, FETCH_REQUESTED } from './constants';
 
 function* fetch(action) {
   const api = yield new Promise(resolve => {
@@ -8,12 +9,12 @@ function* fetch(action) {
     }, 1000);
   });
   
-  yield put({ type: "FETCH_SUCCEEDED", payload: api });
+  yield put({ type: FETCH_SUCCEEDED, payload: api });
   // yield put({type: "FETCH_FAILED", message: e.message});
 }
 
 function* sagas() {
-  yield takeLatest("FETCH_REQUESTED", fetch);
+  yield takeLatest(FETCH_REQUESTED, fetch);
 }
 
 export default sagas;

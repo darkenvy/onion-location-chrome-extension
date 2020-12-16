@@ -1,7 +1,7 @@
 {
-  "name": "chrome-extension-react-typescript-boilerplate",
-  "version": "1.1.0",
-  "description": "boilerplate for chrome extension building",
+  "name": "onion-location-helper",
+  "version": "1.0.0",
+  "description": "Notifies the user if a domain is available in onion format. Optional redirect",
   "homepage": "http://github.com/darkenvy",
   "license": "MIT",
   "devDependencies": {

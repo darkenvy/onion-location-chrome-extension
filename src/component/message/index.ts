@@ -13,10 +13,10 @@ function contentScript(message: Object, response?: Function) {
       const options: Object = {};
       const responseCallback: any = response;
       const url = tab.url as string;
-      const msg = { ...message, recipient: CONSTANTS.RECIPIENT.BACKGROUND };
+      const msg = { ...message, recipient: CONSTANTS.RECIPIENT.CONTENT_SCRIPT };
 
       if (!/https?:\/\//.test(url)) return;
-      logger(url, !/https?:\/\//.test(url), 'sendMessage', tab);
+      logger(`sending message to tabId: ${tabId}, msg: ${msg}, options: ${options}, recipient: ${CONSTANTS.RECIPIENT.CONTENT_SCRIPT}`);
       chrome.tabs.sendMessage(tabId, msg, options, responseCallback);  
     });
   });
@@ -33,7 +33,10 @@ function foreground(message: d.Message, response?: Function) {
 // -------------------------------------------------------------------------- //
 
 function _addListener(recipient: string, callback: Function) {
-  if (!callback || typeof callback !== 'function') return;
+  if (!callback || typeof callback !== 'function') {
+    logger('error using _addListener. callback is not a function');
+    return;
+  }
 
   (chrome.extension as any).onMessage.addListener((request: any, sender: any, sendResponse: Function) => {
     if (request.recipient !== recipient) return;

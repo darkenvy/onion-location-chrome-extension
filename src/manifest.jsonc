@@ -18,12 +18,14 @@ here with the value there. */
   },
   "browser_action": {
     // uncomment the next line to enable popups when the extension icon is clicked
-    // "default_popup": "foreground.html",
+    "default_popup": "foreground.html",
     "default_icon": "icons/icon19.png",
     "default_title": "browser action demo"
   },
   "permissions": [
     // Be sure to remove permissions not used
+    "webRequest",
+    "<all_urls>",
     "storage",
     "cookies",
     "tabs"
@@ -33,7 +35,7 @@ here with the value there. */
   "content_scripts": [
     {
       "matches": [
-        "https://www.google.com/*"
+        "<all_urls>"
       ],
       "js": [
         "content.bundle.js"

@@ -25,6 +25,7 @@ export default class App extends React.Component {
   increment() {
     const counter = this.props.counter || 0;
     this.props.set(counter + 1);
+    console.log('increment', this.props)
   }
 
   render() {
